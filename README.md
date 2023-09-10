@@ -4,34 +4,110 @@
 [![Codecov](https://codecov.io/gh/paxa1887/ts-type-detector/graph/badge.svg?token=S6U22KXOKW)](https://codecov.io/gh/paxa1887/ts-type-detector) [![NPM Monthly Downloads](https://img.shields.io/npm/dm/ts-type-detector.svg?style=flat)](https://www.npmjs.com/package/ts-type-detector)
 [![Install Size](https://packagephobia.com/badge?p=ts-type-detector)](https://packagephobia.com/result?p=ts-type-detector) [![Known Vulnerabilities](https://snyk.io/test/github/paxa1887/ts-type-detector/badge.svg)](https://snyk.io/test/github/paxa1887/ts-type-detector)
 
+Get a detailed kind descriptor of a value, including arrays, functions, and custom objects.
+
+## Intro
+
 The ts-type-detector library is a versatile utility for JavaScript and TypeScript developers to determine the kind or type of a given value. It offers a comprehensive set of functions to check various aspects of a value, helping you write more robust and error-resistant code.
 
-# Key Features:
+## Usage
 
-## TypeScript Integration
+##### `import { complexDivision } from 'ts-type-detector';`
 
-The project is configured to fully support TypeScript, enabling you to write type-safe code and take advantage of TypeScript's powerful features.
+```TypeScript
+const result = type_detector(undefined);
+//=> 'undefined'
 
-## Project Structure
+const result = type_detector(null);
+//=> 'null'
 
-The project structure is organized to promote modularity and separation of concerns. It includes directories for source code (src), built output (dist), and unit tests (test), among others.
+const result = type_detector(true);
+//=> 'boolean'
 
-## Testing Support
+const result = type_detector(false);
+//=> 'boolean'
 
-The boilerplate includes a testing framework Jest and a pre-configured testing setup. This encourages you to write tests for your code, ensuring its correctness and maintaining reliability.
+const result = type_detector(new Buffer(''));
+//=> 'buffer'
 
-## Versioning and Changelog
+const result = type_detector(42);
+//=> 'number'
 
-The boilerplate includes a versioning system and a changelog template. This helps you keep track of changes and provide transparent communication to your users about updates.
+const result = type_detector('str');
+//=> 'string'
 
-## Linting and Formatting
+const result = type_detector(arguments);
+//=> 'arguments'
 
-Code quality is maintained through linting and code formatting configurations, ensuring consistency and adherence to coding standards.
+const result = type_detector({});
+//=> 'object'
 
-## Publishing Workflow
+const result = type_detector(Object.create(null));
+//=> 'object'
 
-The boilerplate includes scripts and configuration for packaging and publishing your npm package to the npm registry. This simplifies the process of making your package available to others.
+const result = type_detector(new Test());
+//=> 'object'
 
-## CI/CD Integration
+const result = type_detector(new Date());
+//=> 'date'
 
-Integration with Github Action to automate the build and run tests.
+const result = type_detector([1, 2, 3]);
+//=> 'array'
+
+const result = type_detector(/foo/);
+//=> 'regexp'
+
+const result = type_detector(new RegExp('foo'));
+//=> 'regexp'
+
+const result = type_detector(new Error('error'));
+//=> 'error'
+
+const result = type_detector(function () {});
+//=> 'function'
+
+const result = type_detector(function * () {});
+//=> 'generatorfunction'
+
+const result = type_detector(Symbol('str'));
+//=> 'symbol'
+
+const result = type_detector(new Map());
+//=> 'map'
+
+const result = type_detector(new WeakMap());
+//=> 'weakmap'
+
+const result = type_detector(new Set());
+//=> 'set'
+
+const result = type_detector(new WeakSet());
+//=> 'weakset'
+
+const result = type_detector(new Int8Array());
+//=> 'int8array'
+
+const result = type_detector(new Uint8Array());
+//=> 'uint8array'
+
+const result = type_detector(new Uint8ClampedArray());
+//=> 'uint8clampedarray'
+
+const result = type_detector(new Int16Array());
+//=> 'int16array'
+
+const result = type_detector(new Uint16Array());
+//=> 'uint16array'
+
+const result = type_detector(new Int32Array());
+//=> 'int32array'
+
+const result = type_detector(new Uint32Array());
+//=> 'uint32array'
+
+const result = type_detector(new Float32Array());
+//=> 'float32array'
+
+const result = type_detector(new Float64Array());
+//=> 'float64array'
+```
