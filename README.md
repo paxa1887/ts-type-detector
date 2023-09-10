@@ -1,15 +1,17 @@
-# typescript-npm-package-boilerplate
+# ts-type-detector
 
-![Workflow](https://github.com/paxa1887/typescript-npm-package-boilerplate/actions/workflows/main.yml/badge.svg)
-[![codecov](https://codecov.io/gh/paxa1887/typescript-npm-package-boilerplate/graph/badge.svg?token=5GMOQM4EZP)](https://codecov.io/gh/paxa1887/typescript-npm-package-boilerplate)
+![Workflow](https://github.com/paxa1887/ts-type-detector/actions/workflows/main.yml/badge.svg)
+[![Codecov](https://codecov.io/gh/paxa1887/ts-type-detector/graph/badge.svg?token=S6U22KXOKW)](https://codecov.io/gh/paxa1887/ts-type-detector) [![NPM Monthly Downloads](https://img.shields.io/npm/dm/ts-type-detector.svg?style=flat)](https://www.npmjs.com/package/ts-type-detector)
+[![Install Size](https://packagephobia.com/badge?p=ts-type-detector)](https://packagephobia.com/result?p=ts-type-detector) [![Known Vulnerabilities](https://snyk.io/test/github/paxa1887/ts-type-detector/badge.svg)](https://snyk.io/test/github/paxa1887/ts-type-detector)
 
-The typescript-npm-package-boilerplate is a comprehensive and well-structured starting point for creating TypeScript-based npm packages. This boilerplate provides a foundation for building high-quality, maintainable, and easy-to-use npm packages using the TypeScript programming language.
+The ts-type-detector library is a versatile utility for JavaScript and TypeScript developers to determine the kind or type of a given value. It offers a comprehensive set of functions to check various aspects of a value, helping you write more robust and error-resistant code.
+
 
 # Key Features:
 
 ## TypeScript Integration
 
-The boilerplate is configured to fully support TypeScript, enabling you to write type-safe code and take advantage of TypeScript's powerful features.
+The project is configured to fully support TypeScript, enabling you to write type-safe code and take advantage of TypeScript's powerful features.
 
 ## Project Structure
 

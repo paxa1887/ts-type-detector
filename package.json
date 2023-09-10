@@ -1,7 +1,7 @@
 {
-  "name": "typescript-npm-package-boilerplate",
+  "name": "ts-type-detector",
   "version": "1.0.0",
-  "description": "The typescript-npm-package-boilerplate is a comprehensive and well-structured starting point for creating TypeScript-based npm packages. This boilerplate provides a foundation for building high-quality, maintainable, and easy-to-use npm packages using the TypeScript programming language.",
+  "description": "The ts-type-detector library is a versatile utility for JavaScript and TypeScript developers to determine the kind or type of a given value. It offers a comprehensive set of functions to check various aspects of a value, helping you write more robust and error-resistant code.",
   "scripts": {
     "build": "tsup ./src && npx typedoc src/index.ts",
     "tests": "jest --coverage --config ./.jestrc.json && prettier . --write && npm run lint",

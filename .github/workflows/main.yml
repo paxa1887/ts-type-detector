@@ -1,4 +1,4 @@
-name: Buld and run tests
+name: CI
 
 on: [push]
 
