@@ -12,7 +12,7 @@ The ts-type-detector library is a versatile utility for JavaScript and TypeScrip
 
 ## Usage
 
-##### `import { complexDivision } from 'ts-type-detector';`
+##### `import type_detector from 'ts-type-detector';`
 
 ```TypeScript
 const result = type_detector(undefined);
