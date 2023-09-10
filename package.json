@@ -1,0 +1,48 @@
+{
+  "name": "typescript-npm-package-boilerplate",
+  "version": "1.0.0",
+  "description": "The typescript-npm-package-boilerplate is a comprehensive and well-structured starting point for creating TypeScript-based npm packages. This boilerplate provides a foundation for building high-quality, maintainable, and easy-to-use npm packages using the TypeScript programming language.",
+  "scripts": {
+    "build": "tsup ./src && npx typedoc src/index.ts",
+    "tests": "jest --coverage --config ./.jestrc.json && prettier . --write && npm run lint",
+    "coverage": "jest --collect-coverage",
+    "lint": "eslint . --ext .ts",
+    "lint-and-fix": "eslint . --ext .ts --fix",
+    "prettier-fix": "prettier . --write"
+  },
+  "files": [
+    "dist",
+    "package.json"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "keywords": [
+    "npm-package",
+    "boilerplate",
+    "typescript"
+  ],
+  "author": "Pavlo Vashchenko",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.22.10",
+    "@babel/preset-env": "^7.22.10",
+    "@babel/preset-typescript": "^7.22.5",
+    "@types/jest": "^29.5.3",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "@typescript-eslint/parser": "^6.4.0",
+    "eslint": "^8.47.0",
+    "prettier": "3.0.2",
+    "ts-jest": "^29.1.1",
+    "tsup": "^7.2.0",
+    "typedoc": "^0.25.0",
+    "typescript": "^5.1.6"
+  }
+}
