@@ -1,7 +1,5 @@
-export const type_detector = (...args: any[]): string => {
-  const val = args[0];
-
-  if (val === undefined) return 'undefined';
+export const type_detector = (val: any): string => {
+  if (val === void 0) return 'undefined';
   if (val === null) return 'null';
 
   const type = typeof val;
