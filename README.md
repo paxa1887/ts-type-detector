@@ -6,7 +6,6 @@
 
 The ts-type-detector library is a versatile utility for JavaScript and TypeScript developers to determine the kind or type of a given value. It offers a comprehensive set of functions to check various aspects of a value, helping you write more robust and error-resistant code.
 
-
 # Key Features:
 
 ## TypeScript Integration
