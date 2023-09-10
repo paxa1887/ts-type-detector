@@ -12,102 +12,102 @@ The ts-type-detector library is a versatile utility for JavaScript and TypeScrip
 
 ## Usage
 
-##### `import type_detector from 'ts-type-detector';`
+##### `import whoami from 'ts-type-detector';`
 
 ```TypeScript
-const result = type_detector(undefined);
+const result = whoami(undefined);
 //=> 'undefined'
 
-const result = type_detector(null);
+const result = whoami(null);
 //=> 'null'
 
-const result = type_detector(true);
+const result = whoami(true);
 //=> 'boolean'
 
-const result = type_detector(false);
+const result = whoami(false);
 //=> 'boolean'
 
-const result = type_detector(new Buffer(''));
+const result = whoami(new Buffer(''));
 //=> 'buffer'
 
-const result = type_detector(42);
+const result = whoami(42);
 //=> 'number'
 
-const result = type_detector('str');
+const result = whoami('str');
 //=> 'string'
 
-const result = type_detector(arguments);
+const result = whoami(arguments);
 //=> 'arguments'
 
-const result = type_detector({});
+const result = whoami({});
 //=> 'object'
 
-const result = type_detector(Object.create(null));
+const result = whoami(Object.create(null));
 //=> 'object'
 
-const result = type_detector(new Test());
+const result = whoami(new Test());
 //=> 'object'
 
-const result = type_detector(new Date());
+const result = whoami(new Date());
 //=> 'date'
 
-const result = type_detector([1, 2, 3]);
+const result = whoami([1, 2, 3]);
 //=> 'array'
 
-const result = type_detector(/foo/);
+const result = whoami(/foo/);
 //=> 'regexp'
 
-const result = type_detector(new RegExp('foo'));
+const result = whoami(new RegExp('foo'));
 //=> 'regexp'
 
-const result = type_detector(new Error('error'));
+const result = whoami(new Error('error'));
 //=> 'error'
 
-const result = type_detector(function () {});
+const result = whoami(function () {});
 //=> 'function'
 
-const result = type_detector(function * () {});
+const result = whoami(function * () {});
 //=> 'generatorfunction'
 
-const result = type_detector(Symbol('str'));
+const result = whoami(Symbol('str'));
 //=> 'symbol'
 
-const result = type_detector(new Map());
+const result = whoami(new Map());
 //=> 'map'
 
-const result = type_detector(new WeakMap());
+const result = whoami(new WeakMap());
 //=> 'weakmap'
 
-const result = type_detector(new Set());
+const result = whoami(new Set());
 //=> 'set'
 
-const result = type_detector(new WeakSet());
+const result = whoami(new WeakSet());
 //=> 'weakset'
 
-const result = type_detector(new Int8Array());
+const result = whoami(new Int8Array());
 //=> 'int8array'
 
-const result = type_detector(new Uint8Array());
+const result = whoami(new Uint8Array());
 //=> 'uint8array'
 
-const result = type_detector(new Uint8ClampedArray());
+const result = whoami(new Uint8ClampedArray());
 //=> 'uint8clampedarray'
 
-const result = type_detector(new Int16Array());
+const result = whoami(new Int16Array());
 //=> 'int16array'
 
-const result = type_detector(new Uint16Array());
+const result = whoami(new Uint16Array());
 //=> 'uint16array'
 
-const result = type_detector(new Int32Array());
+const result = whoami(new Int32Array());
 //=> 'int32array'
 
-const result = type_detector(new Uint32Array());
+const result = whoami(new Uint32Array());
 //=> 'uint32array'
 
-const result = type_detector(new Float32Array());
+const result = whoami(new Float32Array());
 //=> 'float32array'
 
-const result = type_detector(new Float64Array());
+const result = whoami(new Float64Array());
 //=> 'float64array'
 ```
