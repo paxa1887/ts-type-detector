@@ -1,10 +1,11 @@
-export const type_detector = (...args: []): string => {
+export const type_detector = (...args: any[]): string => {
   const val = args[0];
 
   if (val === undefined) return 'undefined';
   if (val === null) return 'null';
 
   const type = typeof val;
+
   if (type === 'boolean') return 'boolean';
   if (type === 'string') return 'string';
   if (type === 'number') return 'number';
