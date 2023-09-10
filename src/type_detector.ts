@@ -1,4 +1,4 @@
-export const type_detector = (val: any): string => {
+export function type_detector(val: any): string {
   if (val === void 0) return 'undefined';
   if (val === null) return 'null';
 
@@ -75,7 +75,7 @@ export const type_detector = (val: any): string => {
   }
 
   return type.slice(8, -1).toLowerCase().replace(/\s/g, '');
-};
+}
 
 function ctorName(val: any): string | null {
   return typeof val.constructor === 'function' ? val.constructor.name : null;

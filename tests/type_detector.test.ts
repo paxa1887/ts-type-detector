@@ -1,5 +1,5 @@
-import { type_detector } from '../src/type_detector';
 import { describe, expect } from '@jest/globals';
+import { type_detector } from '../src/type_detector';
 
 describe('Add function', function () {
   describe('type_detector', function () {
