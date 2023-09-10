@@ -1,10 +1,10 @@
-const toString: () => string = Object.prototype.toString;
+export const type_detector = (...args: []): string => {
+  const val = args[0];
 
-export const type_detector = (val: any): string => {
   if (val === undefined) return 'undefined';
   if (val === null) return 'null';
 
-  let type = typeof val;
+  const type = typeof val;
   if (type === 'boolean') return 'boolean';
   if (type === 'string') return 'string';
   if (type === 'number') return 'number';
@@ -12,7 +12,6 @@ export const type_detector = (val: any): string => {
   if (type === 'function') {
     return isGeneratorFn(val) ? 'generatorfunction' : 'function';
   }
-
   if (isArray(val)) return 'array';
   if (isBuffer(val)) return 'buffer';
   if (isArguments(val)) return 'arguments';
@@ -61,11 +60,11 @@ export const type_detector = (val: any): string => {
     return 'generator';
   }
 
-  type = toString.call(val);
-  switch (type) {
+  const objectType = toString.call(val) as string;
+  switch (objectType) {
     case '[object Object]':
       return 'object';
-
+    // iterators
     case '[object Map Iterator]':
       return 'mapiterator';
     case '[object Set Iterator]':
@@ -126,7 +125,11 @@ function isArguments(val: any): boolean {
       return true;
     }
   } catch (err) {
-    if (err.message.indexOf('callee') !== -1) {
+    if (
+      err instanceof Error &&
+      typeof (err as Error).message === 'string' &&
+      (err as Error).message.includes('callee')
+    ) {
       return true;
     }
   }

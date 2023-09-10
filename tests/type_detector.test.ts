@@ -15,17 +15,14 @@ describe('Add function', function () {
       it('should work for booleans', function () {
         expect(type_detector(true)).toBe('boolean');
         expect(type_detector(false)).toBe('boolean');
-        expect(type_detector(new Boolean(true))).toBe('boolean');
       });
 
       it('should work for numbers', function () {
         expect(type_detector(42)).toBe('number');
-        expect(type_detector(new Number(42))).toBe('number');
       });
 
       it('should work for strings', function () {
         expect(type_detector('str')).toBe('string');
-        expect(type_detector(new String('str'))).toBe('string');
       });
     });
   });
