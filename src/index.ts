@@ -1,69 +1,64 @@
-export function whoami(val: any): string {
-  if (val === void 0) return 'undefined';
-  if (val === null) return 'null';
+/**
+ * A function to get the type name of a given value.
+ *
+ * @param value - The value whose type name needs to be determined.
+ * @returns The type name as a string.
+ */
+export function whoami(value: unknown): string {
+  // Checking for undefined and null values
+  if (value === undefined) return 'undefined';
+  if (value === null) return 'null';
 
-  const type = typeof val;
+  const type = typeof value;
 
-  if (type === 'boolean') return 'boolean';
-  if (type === 'string') return 'string';
-  if (type === 'number') return 'number';
-  if (type === 'symbol') return 'symbol';
-  if (type === 'function') {
-    return isGeneratorFn(val) ? 'generatorfunction' : 'function';
-  }
-  if (isArray(val)) return 'array';
-  if (isBuffer(val)) return 'buffer';
-  if (isArguments(val)) return 'arguments';
-  if (isDate(val)) return 'date';
-  if (isError(val)) return 'error';
-  if (isRegexp(val)) return 'regexp';
-
-  switch (ctorName(val)) {
-    case 'Symbol':
-      return 'symbol';
-    case 'Promise':
-      return 'promise';
-
-    case 'WeakMap':
-      return 'weakmap';
-    case 'WeakSet':
-      return 'weakset';
-    case 'Map':
-      return 'map';
-    case 'Set':
-      return 'set';
-
-    case 'Int8Array':
-      return 'int8array';
-    case 'Uint8Array':
-      return 'uint8array';
-    case 'Uint8ClampedArray':
-      return 'uint8clampedarray';
-
-    case 'Int16Array':
-      return 'int16array';
-    case 'Uint16Array':
-      return 'uint16array';
-
-    case 'Int32Array':
-      return 'int32array';
-    case 'Uint32Array':
-      return 'uint32array';
-    case 'Float32Array':
-      return 'float32array';
-    case 'Float64Array':
-      return 'float64array';
+  // Switching on basic types
+  switch (type) {
+    case 'boolean':
+    case 'string':
+    case 'number':
+    case 'symbol':
+      return type;
+    case 'function':
+      // Distinguishing between a normal function and a generator function
+      return isGeneratorFn(value) ? 'generatorfunction' : 'function';
+    case 'object':
+      // If type is object, further checking the object's constructor or type
+      if (isArray(value)) return 'array';
+      if (isBuffer(value)) return 'buffer';
+      if (isArguments(value)) return 'arguments';
+      if (isDate(value)) return 'date';
+      if (isError(value)) return 'error';
+      if (isRegexp(value)) return 'regexp';
+      return objectTypeName(value) || type;
   }
 
-  if (isGeneratorObj(val)) {
-    return 'generator';
-  }
+  return type;
+}
 
-  const objectType = toString.call(val) as string;
+/**
+ * Checks if the given value is a generator function.
+ *
+ * @param value - The value to check.
+ * @returns True if the value is a generator function, false otherwise.
+ */
+function isGeneratorFn(value: unknown): boolean {
+  const GeneratorFunctionConstructor = Object.getPrototypeOf(function* () {}).constructor;
+  return value != null && value.constructor === GeneratorFunctionConstructor;
+}
+
+/**
+ * Determines the object type name or constructor name of a given value.
+ *
+ * @param value - The value to check.
+ * @returns The type name as a string or null if it cannot be determined.
+ */
+function objectTypeName(value: unknown): string | null {
+  const objectType = Object.prototype.toString.call(value);
+  const ctorNameVal = ctorName(value);
+
   switch (objectType) {
     case '[object Object]':
       return 'object';
-    // iterators
     case '[object Map Iterator]':
       return 'mapiterator';
     case '[object Set Iterator]':
@@ -72,72 +67,79 @@ export function whoami(val: any): string {
       return 'stringiterator';
     case '[object Array Iterator]':
       return 'arrayiterator';
+    case '[object Generator]':
+      return 'generator';
+    default:
+      return ctorNameVal ? ctorNameVal.toLowerCase() : null;
   }
-
-  return type.slice(8, -1).toLowerCase().replace(/\s/g, '');
 }
 
-function ctorName(val: any): string | null {
-  return typeof val.constructor === 'function' ? val.constructor.name : null;
+/**
+ * Gets the constructor name of the given value.
+ *
+ * @param value - The value to check.
+ * @returns The constructor name as a string or null if it cannot be determined.
+ */
+function ctorName(value: unknown): string | null {
+  return value && typeof value === 'object' && value.constructor ? value.constructor.name.toLowerCase() : null;
 }
 
-function isArray(val: any): boolean {
-  if (Array.isArray) return Array.isArray(val);
-  return val instanceof Array;
+/**
+ * Checks if the given value is an array.
+ *
+ * @param value - The value to check.
+ * @returns True if the value is an array, false otherwise.
+ */
+function isArray(value: unknown): value is Array<unknown> {
+  return Array.isArray(value);
 }
 
-function isError(val: any): boolean {
-  return (
-    val instanceof Error ||
-    (typeof val.message === 'string' && val.constructor && typeof val.constructor.stackTraceLimit === 'number')
-  );
+/**
+ * Checks if the given value is an error object.
+ *
+ * @param value - The value to check.
+ * @returns True if the value is an error object, false otherwise.
+ */
+function isError(value: unknown): value is Error {
+  return value instanceof Error;
 }
 
-function isDate(val: any): boolean {
-  if (val instanceof Date) return true;
-  return (
-    typeof val.toDateString === 'function' && typeof val.getDate === 'function' && typeof val.setDate === 'function'
-  );
+/**
+ * Checks if the given value is a date object.
+ *
+ * @param value - The value to check.
+ * @returns True if the value is a date object, false otherwise.
+ */
+function isDate(value: unknown): value is Date {
+  return value instanceof Date;
 }
 
-function isRegexp(val: any): boolean {
-  if (val instanceof RegExp) return true;
-  return (
-    typeof val.flags === 'string' &&
-    typeof val.ignoreCase === 'boolean' &&
-    typeof val.multiline === 'boolean' &&
-    typeof val.global === 'boolean'
-  );
+/**
+ * Checks if the given value is a regular expression object.
+ *
+ * @param value - The value to check.
+ * @returns True if the value is a regular expression object, false otherwise.
+ */
+function isRegexp(value: unknown): value is RegExp {
+  return value instanceof RegExp;
 }
 
-function isGeneratorFn(name: any): boolean {
-  return ctorName(name) === 'GeneratorFunction';
+/**
+ * Checks if the given value is an arguments object.
+ *
+ * @param value - The value to check.
+ * @returns True if the value is an arguments object, false otherwise.
+ */
+function isArguments(value: unknown): boolean {
+  return Object.prototype.toString.call(value) === '[object Arguments]';
 }
 
-function isGeneratorObj(val: any): boolean {
-  return typeof val.throw === 'function' && typeof val.return === 'function' && typeof val.next === 'function';
-}
-
-function isArguments(val: any): boolean {
-  try {
-    if (typeof val.length === 'number' && typeof val.callee === 'function') {
-      return true;
-    }
-  } catch (err) {
-    if (
-      err instanceof Error &&
-      typeof (err as Error).message === 'string' &&
-      (err as Error).message.includes('callee')
-    ) {
-      return true;
-    }
-  }
-  return false;
-}
-
-function isBuffer(val: any): boolean {
-  if (val.constructor && typeof val.constructor.isBuffer === 'function') {
-    return val.constructor.isBuffer(val);
-  }
-  return false;
+/**
+ * Checks if the given value is a buffer.
+ *
+ * @param value - The value to check.
+ * @returns True if the value is a buffer, false otherwise.
+ */
+function isBuffer(value: unknown): boolean {
+  return typeof Buffer !== 'undefined' && Buffer.isBuffer(value);
 }
