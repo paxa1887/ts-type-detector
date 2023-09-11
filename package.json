@@ -1,7 +1,7 @@
 {
   "name": "ts-type-detector",
-  "version": "2.0.0",
-  "description": "Get a detailed kind descriptor of a value, including arrays, functions, and custom objects.",
+  "version": "2.1.0",
+  "description": "Takes any JavaScript data type or object as an input and returns a string describing the type of the input.",
   "scripts": {
     "build": "tsup ./src && npx typedoc src/index.ts",
     "tests": "jest --coverage --config ./.jestrc.json && prettier . --write && npm run lint",
