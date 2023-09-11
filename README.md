@@ -117,7 +117,7 @@ const result = whoami(new Error('error'));
 const result = whoami(function () {});
 //=> 'function'
 
-const result = whoami(function * () {});
+const result = whoami(function* () {});
 //=> 'generatorfunction'
 
 const result = whoami(Symbol('str'));
@@ -164,4 +164,5 @@ const result = whoami(new Float64Array());
 ```
 
 ### Error Handling
+
 If an unsupported data type or object is passed, it may return 'unknown' or throw an error.
