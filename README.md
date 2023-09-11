@@ -66,13 +66,101 @@ The `whoami` function takes any JavaScript data type or object as an input and r
 ### Examples
 
 ```javascript
-whoami(undefined); // returns 'undefined'
-whoami(null); // returns 'null'
-whoami(true); // returns 'boolean'
-whoami(42); // returns 'number'
-whoami('Hello'); // returns 'string'
-whoami([]); // returns 'array'
-whoami({}); // returns 'object'
+const result = whoami(undefined);
+//=> 'undefined'
+
+const result = whoami(null);
+//=> 'null'
+
+const result = whoami(true);
+//=> 'boolean'
+
+const result = whoami(false);
+//=> 'boolean'
+
+const result = whoami(new Buffer(''));
+//=> 'buffer'
+
+const result = whoami(42);
+//=> 'number'
+
+const result = whoami('str');
+//=> 'string'
+
+const result = whoami(arguments);
+//=> 'arguments'
+
+const result = whoami({});
+//=> 'object'
+
+const result = whoami(Object.create(null));
+//=> 'object'
+
+const result = whoami(new Test());
+//=> 'object'
+
+const result = whoami(new Date());
+//=> 'date'
+
+const result = whoami([1, 2, 3]);
+//=> 'array'
+
+const result = whoami(/foo/);
+//=> 'regexp'
+
+const result = whoami(new RegExp('foo'));
+//=> 'regexp'
+
+const result = whoami(new Error('error'));
+//=> 'error'
+
+const result = whoami(function () {});
+//=> 'function'
+
+const result = whoami(function * () {});
+//=> 'generatorfunction'
+
+const result = whoami(Symbol('str'));
+//=> 'symbol'
+
+const result = whoami(new Map());
+//=> 'map'
+
+const result = whoami(new WeakMap());
+//=> 'weakmap'
+
+const result = whoami(new Set());
+//=> 'set'
+
+const result = whoami(new WeakSet());
+//=> 'weakset'
+
+const result = whoami(new Int8Array());
+//=> 'int8array'
+
+const result = whoami(new Uint8Array());
+//=> 'uint8array'
+
+const result = whoami(new Uint8ClampedArray());
+//=> 'uint8clampedarray'
+
+const result = whoami(new Int16Array());
+//=> 'int16array'
+
+const result = whoami(new Uint16Array());
+//=> 'uint16array'
+
+const result = whoami(new Int32Array());
+//=> 'int32array'
+
+const result = whoami(new Uint32Array());
+//=> 'uint32array'
+
+const result = whoami(new Float32Array());
+//=> 'float32array'
+
+const result = whoami(new Float64Array());
+//=> 'float64array'
 ```
 
 ### Error Handling
