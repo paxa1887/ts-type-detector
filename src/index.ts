@@ -31,7 +31,6 @@ export function whoami(value: unknown): string {
       if (isRegexp(value)) return 'regexp';
       return objectTypeName(value) || type;
   }
-
   return type;
 }
 

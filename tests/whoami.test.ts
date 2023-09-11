@@ -24,16 +24,20 @@ describe('Whoami Function Tests', function () {
       it('should identify booleans', function () {
         expect(whoami(true)).toBe('boolean');
         expect(whoami(false)).toBe('boolean');
+        expect(whoami(new Boolean(true))).toBe('boolean');
       });
 
       // A test case to verify that the function correctly identifies number values.
       it('should identify numbers', function () {
         expect(whoami(42)).toBe('number');
+        expect(whoami(new Number(42))).toBe('number');
       });
 
       // A test case to verify that the function correctly identifies string values.
       it('should identify strings', function () {
         expect(whoami('str')).toBe('string');
+        new String('str');
+        expect(whoami(new String('str'))).toBe('string');
       });
     });
 
