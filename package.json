@@ -1,6 +1,6 @@
 {
   "name": "ts-type-detector",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Takes any JavaScript data type or object as an input and returns a string describing the type of the input.",
   "scripts": {
     "build": "tsup ./src && npx typedoc src/index.ts",
@@ -8,7 +8,8 @@
     "coverage": "jest --collect-coverage",
     "lint": "eslint . --ext .ts",
     "lint-and-fix": "eslint . --ext .ts --fix",
-    "prettier-fix": "prettier . --write"
+    "prettier-fix": "prettier . --write",
+    "semantic-release": "semantic-release"
   },
   "files": [
     "dist",
@@ -58,9 +59,20 @@
     "@typescript-eslint/parser": "^6.4.0",
     "eslint": "^8.47.0",
     "prettier": "3.0.2",
+    "semantic-release": "^21.1.2",
     "ts-jest": "^29.1.1",
     "tsup": "^7.2.0",
     "typedoc": "^0.25.0",
     "typescript": "^5.1.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paxa1887/ts-type-detector.git"
+  },
+  "release": {
+    "branches": ["main"]
+  },
+  "publishConfig": {
+    "access": "public"
+ }
 }
