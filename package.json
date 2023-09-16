@@ -1,6 +1,6 @@
 {
   "name": "ts-type-detector",
-  "version": "1.2.0",
+  "version": "2.3.0",
   "description": "Takes any JavaScript data type or object as an input and returns a string describing the type of the input.",
   "scripts": {
     "build": "tsup ./src && npx typedoc src/index.ts",
