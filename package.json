@@ -70,11 +70,9 @@
     "url": "https://github.com/paxa1887/ts-type-detector.git"
   },
   "release": {
-    "branches": [
-      "main"
-    ]
+    "branches": ["main"]
   },
   "publishConfig": {
     "access": "public"
-  }
+ }
 }
