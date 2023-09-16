@@ -12,11 +12,11 @@ The ts-type-detector library is help to identify the data type of the input prov
 
 ## Usage
 
-##### `import whoami from 'ts-type-detector';`
+#### `import whoami from 'ts-type-detector';`
 
 ## Overview
 
-## Method: `whoami(input)`
+### Method: `whoami(input)`
 
 ### Description
 
